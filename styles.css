@@ -1,0 +1,720 @@
+:root {
+    /* Flip 7 Theme Colors */
+    --bg-color: #87cac7;
+    /* User requested main color */
+    --panel-bg: #ffffff;
+    --text-color: #2c3e50;
+    /* Dark Blue-Grey for readability */
+    --text-light: #ffffff;
+
+    /* Accents inspired by Flip 7 Logo/Cards */
+    --accent-yellow: rgb(249, 221, 105);
+    /* Logo Yellow */
+    --accent-blue: rgb(48, 52, 138);
+    /* Logo Outline Blue */
+    --accent-red: #ef4444;
+    --accent-orange: #f97316;
+
+    --accent-color: #1d4ed8;
+    /* Default main accent (Blue) */
+    --accent-glow: rgba(29, 78, 216, 0.3);
+
+    --danger-color: #ef4444;
+    --font-main: 'Inter', sans-serif;
+    --bar-height: 48px;
+    --anim-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+#app {
+    width: 100%;
+    max-width: 600px;
+    /* Mobile constraint */
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+}
+
+.view {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px;
+    animation: fadeIn var(--anim-speed) ease;
+}
+
+.view.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typography & Common */
+h1 {
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 0.9;
+    margin-bottom: 32px;
+    font-size: 3rem;
+    color: var(--accent-yellow);
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Buttons */
+.main-btn {
+    background: var(--accent-blue);
+    color: var(--text-light);
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 16px;
+    width: 100%;
+    border-radius: 12px;
+    margin-top: auto;
+    transition: transform 0.1s;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.main-btn:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+.main-btn:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    background: #9ca3af;
+}
+
+.secondary-btn {
+    background: var(--panel-bg);
+    color: var(--text-color);
+    font-weight: 700;
+    padding: 16px;
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 12px;
+}
+
+.warning {
+    color: var(--danger-color);
+}
+
+.icon-btn {
+    background: var(--accent-yellow);
+    color: var(--accent-blue);
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.icon-btn:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+/* Entry View */
+/* Entry View */
+#view-entry {
+    justify-content: center;
+    align-items: center;
+}
+
+.entry-logo {
+    max-width: 280px;
+    width: 50%;
+    margin-bottom: 40px;
+    display: block;
+}
+
+.logo {
+    display: none;
+    /* Hide old text logo if still present or prevent fallback */
+}
+
+/* ... existing entry-form styles ... */
+
+.entry-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+/* Score View */
+.score-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    height: 60px;
+}
+
+.header-logo {
+    height: 100%;
+    max-width: 150px;
+    object-fit: contain;
+    object-position: left;
+}
+
+.round-indicator {
+    background: var(--accent-blue);
+    color: var(--text-light);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 900;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.1s;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+.round-indicator:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+/* Modal Input Redesign */
+.modal-content {
+    /* Existing styles slightly modified if needed */
+    padding: 24px;
+    background: #f9fafb;
+    /* Lighter background for modal content area */
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    /* Limit height */
+}
+
+.input-player-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+    overflow-y: auto;
+    flex: 1;
+    max-height: 300px;
+}
+
+.input-player-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 16px;
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.input-player-row.active {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    background: #eff6ff;
+}
+
+.input-player-row .name {
+    font-weight: 700;
+    color: #ccc
+}
+
+.input-player-row.active .name {
+    font-weight: 700;
+    color: #000000
+}
+
+.input-player-row .score-input {
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--accent-blue);
+    min-width: 40px;
+    text-align: right;
+}
+
+.input-player-row .score-input.empty {
+    color: #cbd5e1;
+}
+
+.input-controls {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 16px;
+}
+
+.numpad {
+    gap: 8px;
+}
+
+.numpad button {
+    padding: 16px 0;
+    font-size: 1.25rem;
+}
+
+#next-round-btn {
+    margin-top: 50px;
+    background: var(--accent-green, #10b981);
+    /* Use green or blue? Blue is fine. */
+    background: var(--accent-blue);
+}
+
+#player-name-input {
+    flex: 1;
+    background: var(--panel-bg);
+    border: 2px solid var(--accent-blue);
+    border-radius: 12px;
+    padding: 0 16px;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#player-name-input::placeholder {
+    color: #9ca3af;
+}
+
+#player-name-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.2);
+}
+
+.player-list-entry {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.player-list-entry li {
+    padding: 12px 16px;
+    background: var(--panel-bg);
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Score View */
+.score-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.round-indicator {
+    background: var(--accent-blue);
+    color: var(--text-light);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 900;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+#round-display {
+    color: var(--accent-yellow);
+    font-size: 1.2rem;
+    margin-left: 4px;
+}
+
+.chart-container {
+    flex: 1;
+    display: block;
+    /* changed from flex column */
+    position: relative;
+    /* For absolute children */
+    overflow-y: auto;
+    padding-bottom: 80px;
+}
+
+.player-row {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: var(--bar-height);
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+
+
+.bar-track {
+    height: var(--bar-height);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #fff;
+}
+
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--accent-blue), #3b82f6);
+    width: 0%;
+    transition: width 2s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: none;
+    border-right: 4px solid;
+}
+
+.player-name-overlay {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.player-score-overlay {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-weight: 900;
+    font-size: 1.6rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.goal-line {
+    position: absolute;
+    left: 80%;
+    /* 200 / 250 = 0.8 */
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent-red);
+    border-right: none;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+.goal-line::after {
+    content: '200';
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--accent-red);
+    font-weight: 900;
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.floating-btn {
+    position: absolute;
+    bottom: 32px;
+    right: 24px;
+    background: var(--accent-yellow);
+    color: var(--accent-blue);
+    border-radius: 32px;
+    padding: 16px 32px;
+    font-weight: 900;
+    box-shadow: 0 6px 0 rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    border: 2px solid #fff;
+    font-size: 1.1rem;
+}
+
+.floating-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    /* Slide up feel */
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 600px;
+    background: #111;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 24px;
+    animation: slideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* Theme override for modal content if we want it light or dark? 
+       Usually numpad is easier on dark, but let's make it match the theme (Light/Clean).
+    */
+    background: #fff;
+    border-top: 8px solid var(--accent-blue);
+    color: var(--text-color);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    text-align: right;
+    margin-bottom: 16px;
+}
+
+.modal-header.with-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-btn {
+    background: none;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 8px;
+}
+
+.text-btn.danger {
+    color: var(--danger-color);
+    background: #fee2e2;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+/* Numpad */
+.numpad-display {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: right;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--accent-blue);
+    padding-bottom: 8px;
+    color: var(--text-color);
+}
+
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.numpad button {
+    background: #f3f4f6;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    padding: 10px 0;
+    border-radius: 12px;
+    font-weight: 700;
+    box-shadow: 0 4px 0 #e5e7eb;
+}
+
+.numpad button:active {
+    transform: translateY(2px);
+    box-shadow: none;
+    background: #e5e7eb;
+}
+
+.numpad .ok {
+    background: var(--accent-blue);
+    color: #fff;
+    font-weight: 900;
+    box-shadow: 0 4px 0 #1e40af;
+}
+
+.numpad .ok:active {
+    background: #1e40af;
+    box-shadow: none;
+}
+
+.numpad .clear {
+    color: var(--danger-color);
+}
+
+/* Modal Sections */
+.modal-section {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-section.active {
+    display: flex;
+}
+
+/* Confirmation UI */
+.confirm-message {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+    color: #666;
+}
+
+.confirm-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 50px;
+}
+
+.main-btn.danger {
+    background: var(--danger-color);
+}
+
+/* Result View */
+.ranking-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 32px;
+}
+
+.ranking-list li {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background: #fff;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    color: var(--text-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ranking-list li .rank {
+    font-size: 1.5rem;
+    width: 40px;
+    color: #666;
+    font-weight: 900;
+}
+
+.ranking-list li:first-child {
+    background: linear-gradient(to right, #ffd70033, #ffd70000);
+    border: 1px solid #ffd700;
+    font-size: 1.2rem;
+}
+
+.ranking-list li:first-child .rank {
+    color: #ffd700;
+}
+
+.ranking-list li .name {
+    flex: 1;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.ranking-list li .total {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--accent-blue);
+}
+
+/* Winner Styling */
+.ranking-list li:first-child {
+    background: linear-gradient(to right, #fffbeb, #ffffff);
+    border: 2px solid #ffd700;
+    font-size: 1.3rem;
+    padding: 24px 16px;
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(255, 215, 0, 0.3), 0 4px 6px -2px rgba(255, 215, 0, 0.1);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: visible;
+}
+
+.ranking-list li:first-child .rank {
+    color: #b45309;
+    /* Dark Gold */
+    font-size: 2.5rem;
+    text-shadow: 0 2px 0 #ffd700;
+}
+
+.ranking-list li:first-child::before {
+    content: '👑';
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-size: 2.5rem;
+    transform: rotate(-15deg);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Confetti */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}

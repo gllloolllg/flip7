@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<meta charset="UTF-8">
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#87cac7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Simple Score</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Entry Screen -->
+        <section id="view-entry" class="view active">
+            <img src="logo.png" alt="Flip 7" class="entry-logo">
+            <div class="entry-form">
+                <input type="text" id="player-name-input" placeholder="PLAYER NAME" maxlength="10">
+                <button id="add-player-btn" class="icon-btn">+</button>
+            </div>
+            <ul id="player-list-entry" class="player-list-entry"></ul>
+            <button id="start-game-btn" class="main-btn" disabled>GAME START</button>
+        </section>
+
+        <!-- Score Screen -->
+        <section id="view-score" class="view">
+            <header class="score-header">
+                <img src="logo.png" alt="Flip 7" class="header-logo">
+                <button id="round-trigger" class="round-indicator">ROUND <span id="round-display">1</span></button>
+            </header>
+            <div id="score-chart-container" class="chart-container">
+                <!-- Bars will be injected here -->
+            </div>
+            <!-- Floating button removed -->
+        </section>
+
+        <!-- Input Modal -->
+        <div id="input-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header with-controls">
+                    <button id="new-game-btn" class="text-btn danger">NEW GAME</button>
+                    <button id="close-modal-btn" class="text-btn">CLOSE</button>
+                </div>
+
+                <!-- Score Input Form -->
+                <div id="modal-input-form" class="modal-section active">
+                    <ul id="input-player-list" class="input-player-list">
+                        <!-- List of players with scores will be injected here -->
+                    </ul>
+
+                    <div class="input-controls">
+                        <div class="numpad">
+                            <button data-val="7">7</button><button data-val="8">8</button><button
+                                data-val="9">9</button>
+                            <button data-val="4">4</button><button data-val="5">5</button><button
+                                data-val="6">6</button>
+                            <button data-val="1">1</button><button data-val="2">2</button><button
+                                data-val="3">3</button>
+                            <button data-val="C" class="clear">C</button><button data-val="0">0</button><button
+                                data-val="OK" class="ok">↓</button>
+                        </div>
+                        <button id="next-round-btn" class="main-btn">NEXT ROUND</button>
+                    </div>
+                </div>
+
+                <!-- Reset Confirmation -->
+                <div id="modal-confirm" class="modal-section hidden">
+                    <h2>RESET GAME?</h2>
+                    <div class="confirm-actions">
+                        <button id="confirm-reset-btn" class="main-btn danger">RESET</button>
+                        <button id="cancel-reset-btn" class="secondary-btn">CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <section id="view-result" class="view">
+            <h1>GAME SET</h1>
+            <ul id="ranking-list" class="ranking-list"></ul>
+            <button id="back-to-home-btn" class="main-btn">NEW GAME</button>
+        </section>
+        <canvas id="confetti-canvas"></canvas>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW registered'))
+                    .catch(err => console.log('SW registration failed', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
