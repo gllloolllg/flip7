@@ -41,7 +41,8 @@ body {
     color: var(--text-color);
     font-family: var(--font-main);
     overflow: hidden;
-    height: 100vh;
+    height: 100dvh;
+    /* Dynamic viewport height for mobile */
     display: flex;
     justify-content: center;
 }
@@ -49,10 +50,13 @@ body {
 #app {
     width: 100%;
     max-width: 600px;
-    /* Mobile constraint */
     height: 100%;
     position: relative;
     overflow-y: auto;
+
+    /* Safe Area Insets for iOS Notch/Home Bar */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .view {
@@ -674,6 +678,10 @@ button {
     flex: 1;
     font-size: 1.1rem;
     color: var(--text-color);
+}
+
+.ranking-list li:first-child .name {
+    font-size: 2.4rem;
 }
 
 .ranking-list li .total {
