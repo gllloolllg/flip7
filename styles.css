@@ -30,6 +30,10 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+html {
+    background-color: var(--bg-color);
+}
+
 body {
     margin: 0;
     padding: 0;

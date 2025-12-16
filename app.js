@@ -362,6 +362,19 @@ function bindEvents() {
         input.focus();
     };
 
+    // Enter Key Support
+    document.getElementById('player-name-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            document.getElementById('add-player-btn').click();
+        }
+    });
+
+    // iOS Keyboard Scroll Fix
+    document.getElementById('player-name-input').addEventListener('blur', () => {
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+    });
+
     document.getElementById('start-game-btn').onclick = startGame;
 
     // Base Score View
