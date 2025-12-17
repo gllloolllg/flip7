@@ -261,7 +261,7 @@ button {
 }
 
 .input-player-row.active {
-    border-color: var(--accent-blue);
+    border-color: var(--bg-color);
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
     background: #eff6ff;
 }
@@ -487,64 +487,34 @@ button {
     box-shadow: none;
 }
 
-/* Modal */
-.modal {
-    position: fixed;
-    top: env(safe-area-inset-top);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(2px);
-    z-index: 100;
-    display: none;
-    justify-content: center;
-    align-items: flex-end;
-    /* Slide up feel */
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-content {
-    width: 100%;
-    max-width: 600px;
-    background: #111;
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
+/* Input View Styles */
+#view-input {
+    justify-content: flex-start;
     padding: 24px;
-    animation: slideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-
-    /* Theme override for modal content if we want it light or dark? 
-       Usually numpad is easier on dark, but let's make it match the theme (Light/Clean).
-    */
     background: #fff;
-    border-top: 8px solid var(--accent-blue);
-    color: var(--text-color);
+    /* or match theme? Input view usually clear background */
+    background-color: var(--panel-bg);
 }
 
-@keyframes slideUp {
-    from {
-        transform: translateY(100%);
-    }
-
-    to {
-        transform: translateY(0);
-    }
-}
-
-.modal-header {
-    text-align: right;
-    margin-bottom: 16px;
-}
-
-.modal-header.with-controls {
+.input-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 24px;
 }
 
+.input-container {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    animation: fadeIn 0.3s ease;
+}
+
+.input-container.active {
+    display: flex;
+}
+
+/* Button Utilities */
 .text-btn {
     background: none;
     color: #666;
@@ -609,17 +579,6 @@ button {
     color: var(--danger-color);
 }
 
-/* Modal Sections */
-.modal-section {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    animation: fadeIn 0.3s ease;
-}
-
-.modal-section.active {
-    display: flex;
-}
 
 /* Confirmation UI */
 .confirm-message {

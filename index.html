@@ -41,45 +41,40 @@
             <!-- Floating button removed -->
         </section>
 
-        <!-- Input Modal -->
-        <div id="input-modal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header with-controls">
-                    <button id="new-game-btn" class="text-btn danger">NEW GAME</button>
-                    <button id="close-modal-btn" class="text-btn">CLOSE</button>
-                </div>
+        <!-- Input View -->
+        <section id="view-input" class="view">
+            <div class="input-header">
+                <button id="new-game-btn" class="text-btn danger">NEW GAME</button>
+                <button id="close-input-btn" class="text-btn">BACK</button>
+            </div>
 
-                <!-- Score Input Form -->
-                <div id="modal-input-form" class="modal-section active">
-                    <ul id="input-player-list" class="input-player-list">
-                        <!-- List of players with scores will be injected here -->
-                    </ul>
+            <!-- Score Input Form -->
+            <div id="input-form-container" class="input-container active">
+                <ul id="input-player-list" class="input-player-list">
+                    <!-- List of players with scores will be injected here -->
+                </ul>
 
-                    <div class="input-controls">
-                        <div class="numpad">
-                            <button data-val="7">7</button><button data-val="8">8</button><button
-                                data-val="9">9</button>
-                            <button data-val="4">4</button><button data-val="5">5</button><button
-                                data-val="6">6</button>
-                            <button data-val="1">1</button><button data-val="2">2</button><button
-                                data-val="3">3</button>
-                            <button data-val="C" class="clear">C</button><button data-val="0">0</button><button
-                                data-val="OK" class="ok">↓</button>
-                        </div>
-                        <button id="next-round-btn" class="main-btn">NEXT ROUND</button>
+                <div class="input-controls">
+                    <div class="numpad">
+                        <button data-val="7">7</button><button data-val="8">8</button><button data-val="9">9</button>
+                        <button data-val="4">4</button><button data-val="5">5</button><button data-val="6">6</button>
+                        <button data-val="1">1</button><button data-val="2">2</button><button data-val="3">3</button>
+                        <button data-val="C" class="clear">C</button><button data-val="0">0</button><button
+                            data-val="OK" class="ok">↓</button>
                     </div>
-                </div>
-
-                <!-- Reset Confirmation -->
-                <div id="modal-confirm" class="modal-section hidden">
-                    <h2>RESET GAME?</h2>
-                    <div class="confirm-actions">
-                        <button id="confirm-reset-btn" class="main-btn danger">RESET</button>
-                        <button id="cancel-reset-btn" class="secondary-btn">CANCEL</button>
-                    </div>
+                    <button id="next-round-btn" class="main-btn">NEXT ROUND</button>
                 </div>
             </div>
-        </div>
+
+            <!-- Reset Confirmation -->
+            <div id="input-confirm" class="input-container hidden">
+                <h2>RESET GAME?</h2>
+                <div class="confirm-actions">
+                    <button id="confirm-reset-btn" class="main-btn danger">RESET</button>
+                    <button id="cancel-reset-btn" class="secondary-btn">CANCEL</button>
+                </div>
+            </div>
+        </section>
 
         <!-- Result Screen -->
         <section id="view-result" class="view">

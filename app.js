@@ -27,10 +27,10 @@ let state = {
 const views = {
     entry: document.getElementById('view-entry'),
     score: document.getElementById('view-score'),
+    input: document.getElementById('view-input'),
     result: document.getElementById('view-result')
 };
-const modal = document.getElementById('input-modal');
-const modalInput = document.getElementById('modal-input-form');
+const inputContainer = document.getElementById('input-form-container');
 
 // --- Initialization ---
 function init() {
@@ -85,7 +85,7 @@ function resetGame() {
     document.getElementById('score-chart-container').innerHTML = ''; // Clear DOM map
     renderEntryList();
     showView('entry');
-    modal.classList.remove('active');
+    // modal.classList.remove('active'); // Removed
     stopConfetti(); // Clean up
 }
 
@@ -224,7 +224,7 @@ function startInputSequence() {
 
     renderInputPlayerList();
 
-    modal.classList.add('active');
+    showView('input');
 }
 
 function renderInputPlayerList() {
@@ -278,10 +278,12 @@ function finishRound() {
         // Just show the final state immediately, or delay seeing the result?
         // Let's animate first, then show result.
         saveState();
-        modal.classList.remove('active');
+        showView('score');
 
         // 1. Animate Bars Growth
-        updateBarsOnly();
+        setTimeout(() => {
+            updateBarsOnly();
+        }, 50);
 
         // 2. Wait 2s then Reorder & Show Result
         setTimeout(() => {
@@ -297,10 +299,12 @@ function finishRound() {
 
     } else {
         saveState();
-        modal.classList.remove('active');
+        showView('score');
 
         // 1. Animate Bars Growth (Visual update only, no reorder yet)
-        updateBarsOnly();
+        setTimeout(() => {
+            updateBarsOnly();
+        }, 50);
 
         // 2. Wait 2s then Reorder
         setTimeout(() => {
@@ -384,8 +388,8 @@ function bindEvents() {
     };
 
     // Modal
-    document.getElementById('close-modal-btn').onclick = () => {
-        modal.classList.remove('active');
+    document.getElementById('close-input-btn').onclick = () => {
+        showView('score');
     };
 
     document.getElementById('next-round-btn').onclick = () => {
@@ -394,8 +398,8 @@ function bindEvents() {
 
     // --- Reset Confirmation Logic ---
     const toggleModalSection = (showConfirm) => {
-        const inputForm = document.getElementById('modal-input-form');
-        const confirmSection = document.getElementById('modal-confirm');
+        const inputForm = document.getElementById('input-form-container');
+        const confirmSection = document.getElementById('input-confirm');
 
         if (showConfirm) {
             inputForm.classList.remove('active');
